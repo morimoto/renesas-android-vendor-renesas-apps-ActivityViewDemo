@@ -11,21 +11,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public abstract class BaseActivity extends Activity {
-        //Works:
-    /*public static final String FIRST_PACKAGE_NAME = "com.android.documentsui";
-    public static final String FIRST_COMPONENT_NAME = FIRST_PACKAGE_NAME+".files.FilesActivity";
 
-    public static final String SECOND_PACKAGE_NAME = "com.android.settings";
-    public static final String SECOND_COMPONENT_NAME = SECOND_PACKAGE_NAME+".Settings";*/
-
-        //End Works
-    //com.android.car.dialer/.TelecomActivity
-    //com.android.car.media/.MediaActivity
-        public static final String FIRST_PACKAGE_NAME = "com.android.documentsui";
+    public static final String FIRST_PACKAGE_NAME = "com.android.documentsui";
     public static final String FIRST_COMPONENT_NAME = FIRST_PACKAGE_NAME+".files.FilesActivity";
 
     public static final String SECOND_PACKAGE_NAME  = "com.android.car.dialer";
-    public static final String SECOND_COMPONENT_NAME = SECOND_PACKAGE_NAME+".TelecomActivity";
+    public static final String SECOND_COMPONENT_NAME = "com.android.car.dialer.ui.TelecomActivity";
 
     public abstract String getTag();
 
@@ -69,8 +60,8 @@ public abstract class BaseActivity extends Activity {
             }
 
             @Override
-            public void onTaskMovedToFront(ActivityManager.StackInfo stackInfo) {
-                Log.w(getTag(), "onTaskMovedToFront: stackInfo = " + stackInfo);
+            public void onTaskMovedToFront(int taskId) {
+                Log.w(getTag(), "onTaskMovedToFront: taskId = " + taskId);
                 ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
                 am.moveTaskToFront(
                         BaseActivity.this.getTaskId(), 0 /* Flags */, null /* Bundle */);
